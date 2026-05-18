@@ -1,0 +1,18 @@
+{
+    "recommendations": [
+        "github.remotehub",
+        "yzhang.markdown-all-in-one",
+        "shd101wyy.markdown-preview-enhanced",
+        "bierner.markdown-mermaid",
+        "davidanson.vscode-markdownlint",
+        "mermaidchart.vscode-mermaid-chart",
+        "ms-playwright.playwright",
+        "ms-vscode.powershell",
+        "esbenp.prettier-vscode",
+        "ms-vscode.azurecli",
+        "github.vscode-pull-request-github",
+        "ms-azuretools.vscode-azure-mcp-server",
+        "eamodio.gitlens",
+        "ms-vscode.azure-repos"
+    ]
+}
