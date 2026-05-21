@@ -60,12 +60,23 @@ audit posture of the medical-student-coach-plugin validation layer.
 - Audited the current `plugin.json` manifest and confirmed it points to both
   `skills/` and `agents/`, matching the current documented plugin surface used
   by this repo.
+- Confirmed the current coach, tutor, and quizzer frontmatter `tools` arrays
+  are limited to `vscode/askQuestions` for bounded clarification only, with
+  no broader built-in tool surface authorized.
 - Recorded separate workspace-local follow-up evidence showing that
   `.vscode/settings.json` maps `chat.pluginLocations` to the local plugin root
   for documented source-based discovery.
 - Reviewed the separate post-registration GitHub Copilot Chat log probe and
   found no positive signal that this local plugin was discovered or loaded in
   the current session.
+- Reviewed the separate request-side testing receipt in
+  `research/.requests/05.testing-summary.md` and confirmed it records only
+  sampled current-session coach, tutor, and quizzer interactions, advisory
+  handoffs, and safety or refusal behavior for this session.
+- Confirmed that the request-side testing receipt does not prove plugin
+  discovery, plugin load, runtime readiness, generalized multi-agent
+  execution, or direct sibling-agent invocation, and kept those broader
+  runtime claims blocked in this audit chain.
 - Confirmed the current static agent inventory contains exactly three agent
   files: coach, tutor, and quizzer.
 - Confirmed no `hooks*.json`, `*.mcp.json`, or `mcp*.json` file exists under
@@ -85,6 +96,7 @@ audit posture of the medical-student-coach-plugin validation layer.
 | Traceability matrix exists and has no orphan slice                                                       | pass    | Slice-to-evidence map created for foundation, coach, tutor, quizzer, and runtime gate                      |
 | Safety and privacy boundaries remain explicit                                                            | pass    | Education-only, no-PHI, and no diagnosis or treatment or prescribing rules remain explicit                 |
 | Direct sibling-agent invocation remains blocked                                                          | pass    | Cross-agent transitions remain recommendation-only or conceptual-routing only                              |
+| Least-privilege clarification tool surface remains bounded                                               | pass    | Coach, tutor, and quizzer frontmatter `tools` arrays are limited to `vscode/askQuestions` only             |
 | Official platform-doc validation was completed in this pass                                              | pass    | Current VS Code Copilot customization docs confirm the manifest and `.agent.md` surfaces used by this repo |
 | Target environment baseline was collected in this pass                                                   | pass    | Local host baseline confirmed as VS Code Insiders `1.121.0-insider`; no live runtime behavior is implied   |
 | Workspace local plugin registration evidence exists outside the five-file authoring slice                | pass    | `.vscode/settings.json` maps `chat.pluginLocations` to the local plugin root                               |
@@ -111,6 +123,9 @@ audit posture of the medical-student-coach-plugin validation layer.
 - The documented local-source registration path is configured, but the
   available follow-up evidence still lacks a positive Copilot-specific
   discovery or load signal for the plugin in the active session.
+- Separate request-side sampled interaction evidence exists, but it remains
+  bounded to the interactions and refusals directly observed in the current
+  session and does not widen runtime posture.
 - Scenario coverage is documented and auditable, but this pass does not claim
   live execution of those scenarios.
 - Any future claim of direct coach, tutor, or quizzer invocation would exceed

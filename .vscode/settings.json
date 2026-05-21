@@ -3,6 +3,6 @@
   "github.copilot.chat.agentDebugLog.enabled": true,
   "github.copilot.chat.agentDebugLog.fileLogging.enabled": true,
   "chat.pluginLocations": {
-    "c:/projects/research/research/medical-student-coach-plugin": true
+    "c:/projects/research/research/plugins/medical-student-coach-plugin": true
   }
 }

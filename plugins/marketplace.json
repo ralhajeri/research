@@ -1,0 +1,26 @@
+{
+  "name": "research-plugins",
+  "owner": {
+    "name": "Rashid Alhajeri"
+  },
+  "metadata": {
+    "description": "Curated repo-local GitHub Copilot plugin marketplace metadata for the current research plugin scaffold.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "medical-student-coach-plugin",
+      "description": "Education-only medical tutoring foundation with shared governance, tutoring method, and quiz behavior.",
+      "version": "0.1.0",
+      "source": "./medical-student-coach-plugin"
+    }
+  ],
+  "_registration": {
+    "_comment": "This repo-local marketplace preserves the same carrier shape as the sibling example, but exact non-default `chat.plugins.marketplaces` path semantics remain evidence-required and must be revalidated against current official VS Code documentation before binding this file as a live marketplace registration surface.",
+    "_steps": [
+      "1. Revalidate current official VS Code plugin-marketplace registration guidance before using this file with `chat.plugins.marketplaces`.",
+      "2. Treat `./medical-student-coach-plugin` as the relative source root for this registry entry.",
+      "3. Keep direct local plugin registration bounded to `.vscode/settings.json` and the live `chat.pluginLocations` path unless and until marketplace-path semantics are separately proven."
+    ]
+  }
+}

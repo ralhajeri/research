@@ -1,7 +1,7 @@
 {
-  "name": "medical-student-coach",
+  "name": "medical-student-coach-plugin",
   "description": "Education-only medical tutoring foundation with shared governance, tutoring method, and quiz behavior.",
   "version": "0.1.0",
-  "skills": "skills/",
-  "agents": "agents/"
+  "skills": "./skills/",
+  "agents": "./agents/"
 }

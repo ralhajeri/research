@@ -6,7 +6,7 @@ description: >
   orientation, session-local weak-area review, or a recommendation to a
   future tutor or quizzer without direct invocation, PHI handling,
   diagnosis, treatment, or prescribing.
-tools: []
+tools: [vscode/askQuestions]
 ---
 
 # Appoint Medical Student Coach
@@ -62,17 +62,18 @@ runtime surfaces.
 
 ## Allowed Tools
 
-None. The frontmatter tool list is intentionally empty for least privilege.
-This role is recommendation-only and non-invoking.
+Only `#tool:vscode/askQuestions`. Use it only for brief learner
+clarification when the topic, goal, or time budget is missing. This role
+remains recommendation-only and non-invoking.
 
 ## Forbidden Tools for This Role
 
-- #tool:agent
-- #tool:edit
-- #tool:search/codebase
-- #tool:read/file
-- #tool:run/terminal
-- Any hook, MCP, or external runtime surface
+- Agent invocation tools
+- Edit tools
+- Search tools
+- File-read tools
+- Terminal or execution tools
+- Any web, hook, MCP, or external runtime surface other than `#tool:vscode/askQuestions`
 
 ## Handoff Contract
 
@@ -196,7 +197,7 @@ the current session.
 - Confirm the frontmatter `name` is `AppointMedicalStudentCoach`.
 - Confirm `AGENT_KIND` is `WORKER`.
 - Confirm the frontmatter contains only `name`, `description`, and `tools`.
-- Confirm the frontmatter `tools` list is empty for least privilege.
+- Confirm the frontmatter `tools` list is exactly `vscode/askQuestions` for bounded clarification only.
 - Confirm education-only, no-PHI, and no diagnosis, treatment, or prescribing boundaries are explicit.
 - Confirm study planning, progress reflection, and current-session weak-area handling are explicit.
 - Confirm tutor and quizzer behavior stays recommendation-only or conceptual-routing only.

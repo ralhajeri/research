@@ -43,6 +43,13 @@ availability, direct sibling-agent invocation, or runtime-ready support.
   VS Code Insiders `1.121.0-insider`. That baseline helps scope runtime
   evidence, but it is not live-load, live-discovery, or actual-invocation
   proof.
+- Separate bounded follow-up evidence in
+  `research/.requests/05.testing-summary.md` records sampled current-session
+  coach, tutor, and quizzer interactions plus advisory-routing and
+  refusal-behavior observations. That receipt is companion evidence only. It
+  does not widen this static governance layer into runtime-ready, live-load,
+  live-discovery, generalized multi-agent execution, or direct
+  sibling-invocation proof.
 - Separate post-registration log-probe evidence found no positive GitHub
   Copilot Chat signal that this local plugin was discovered or loaded in the
   active session, so live discovery remains unproven.

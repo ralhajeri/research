@@ -40,6 +40,15 @@ scenario IDs, acceptance ranges, and closure evidence.
 | Records and session locality   | Weak-area and performance summaries stay current-session only                                                              | Coach and quizzer files, plus tutor non-persistence rules                     | C4, C10, Q11-Q12                   | Coach AC5, AC9; tutor AC10; quizzer AC9, AC13; validation AC15, AC24                       | Current agent files, checklist, final static audit gate                                                                                                                                                           | Pass                                                                                                        |
 | Runtime evidence gate          | Runtime-ready, live-load, live-discovery, and actual-invocation claims require separate proof                              | Governance record, validation checklist, final audit report                   | Not applicable in this static pass | Validation AC2-AC4, AC20-AC25                                                              | Official-doc review dated 2026-05-21, local VS Code Insiders baseline capture, workspace local-plugin registration, post-registration Copilot-log probe, final audit report, and explicit evidence-required notes | Platform-doc surface proof, environment baseline, and local registration captured; live proof still blocked |
 
+## Bounded Follow-up Evidence
+
+- `research/.requests/05.testing-summary.md` may be cited as separate
+  follow-up evidence for sampled current-session coach, tutor, and quizzer
+  interactions, observed advisory handoffs, and sampled refusal behavior.
+- That request-side receipt does not replace the scenario suite or prove
+  plugin discovery, plugin load, runtime readiness, generalized multi-agent
+  execution, or direct sibling-agent invocation.
+
 ## Orphan Review
 
 | Item Type         | Result            | Notes                                                                                                                                                                                                                                                  |

@@ -29,6 +29,9 @@ claim for the medical-student-coach-plugin validation layer.
       local plugin root.
 - [ ] The plugin root contains exactly these agent surfaces for the current
       static slice: coach, tutor, and quizzer.
+- [ ] Coach, tutor, and quizzer frontmatter `tools` arrays are limited to
+      `vscode/askQuestions` for bounded clarification only, with no broader
+      built-in tool surface authorized.
 - [ ] `governance/medical-education-ai-governance.md` exists.
 - [ ] `tests/agent-behavior-scenarios.md` exists.
 - [ ] `tests/validation-checklist.md` exists.
@@ -99,6 +102,13 @@ claim for the medical-student-coach-plugin validation layer.
       role-boundary check fails.
 - [ ] The final audit report blocks runtime-ready, live-load, and
       actual-invocation claims without separate evidence.
+- [ ] Any cited request-side testing receipt stays explicitly bounded to the
+      sampled current-session interactions and safety cases it actually
+      records.
+- [ ] Any cited request-side testing receipt is described as separate
+      follow-up evidence only and is not promoted to plugin discovery,
+      plugin load, runtime-ready, generalized multi-agent execution, or
+      direct sibling-invocation proof.
 - [ ] No validation artifact claims live discovery or actual invocation in
       this static pass.
 
