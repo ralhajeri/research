@@ -1,0 +1,7 @@
+{
+  "name": "medical-student-coach",
+  "description": "Education-only medical tutoring foundation with shared governance, tutoring method, and quiz behavior.",
+  "version": "0.1.0",
+  "skills": "skills/",
+  "agents": "agents/"
+}
