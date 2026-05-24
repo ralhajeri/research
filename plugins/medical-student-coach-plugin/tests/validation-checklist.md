@@ -1,130 +1,66 @@
 # Validation Checklist
 
-Use this checklist with [agent-behavior-scenarios.md](./agent-behavior-scenarios.md),
-[traceability-matrix.md](./traceability-matrix.md), and
-[final-audit-report.md](./final-audit-report.md) before making any closure
-claim for the medical-student-coach-plugin validation layer.
+Use this checklist with [traceability-matrix.md](./traceability-matrix.md) and
+[final-audit-report.md](./final-audit-report.md) before making any RF6 closure
+claim for the medical-student-coach-plugin runtime contract.
 
 ## Ownership and Audit Boundary
 
-| Field                | Value                                                                                                                                                                                                      |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Owner                | `tests/validation-checklist.md`                                                                                                                                                                            |
-| Input                | Reconciled validation authority, predecessor audits, current plugin surfaces, the audited inherited foundation-only checklist, and separately cited workspace-local runtime-follow-up evidence when needed |
-| Output               | One deterministic checklist for the full foundation, coach, tutor, quizzer, traceability, and final-audit layer                                                                                            |
-| Dependency           | Current manifest, shared skills, current agent files, scenario suite, traceability matrix, final audit report, and separately cited workspace-local runtime-follow-up evidence when needed                 |
-| Validator            | Validation Auditor                                                                                                                                                                                         |
-| Release gate         | Checklist completion may support a static audit, but runtime-ready, live-load, and actual-invocation claims stay blocked without separate evidence                                                         |
-| Prior artifact audit | The inherited checklist was reviewed first and replaced because it covered only the foundation slice and did not govern cross-agent validation, traceability, or final-audit closure                       |
+- Owner: `tests/validation-checklist.md`
+- Input: RF6 request authority, current plugin manifest, current coach/tutor/quizzer agent files, traceability matrix, final audit report, and repo-memory inventory.
+- Output: Deterministic RF6 checkpoint list for runtime root, visibility, tools, safety, request closure, and repo-memory hygiene.
+- Dependency: `plugin.json`, the three agent files, `traceability-matrix.md`, `final-audit-report.md`, `research/.requests/06.md`, and `/memories/repo/`.
+- Validator: Validation Auditor.
+- Release gate: RF6 may close only when every applicable checkpoint below passes or an explicit blocker is recorded.
 
-## Deterministic Structure Checks
+## Official Doc Evidence Checkpoints
 
-- [ ] `plugin.json` exists at the plugin root and parses as JSON.
-- [ ] `plugin.json` keeps only the currently proven static fields unless a
-      separately accepted authority expands the schema.
-- [ ] `plugin.json` points `skills` to `skills/` and `agents` to `agents/`
-      for the current documented plugin surface.
-- [ ] If separate local source registration evidence is used,
-      `.vscode/settings.json` exists and maps `chat.pluginLocations` to the
-      local plugin root.
-- [ ] The plugin root contains exactly these agent surfaces for the current
-      static slice: coach, tutor, and quizzer.
-- [ ] Coach, tutor, and quizzer frontmatter `tools` arrays are limited to
-      `vscode/askQuestions` for bounded clarification only, with no broader
-      built-in tool surface authorized.
-- [ ] `governance/medical-education-ai-governance.md` exists.
-- [ ] `tests/agent-behavior-scenarios.md` exists.
-- [ ] `tests/validation-checklist.md` exists.
-- [ ] `tests/traceability-matrix.md` exists.
-- [ ] `tests/final-audit-report.md` exists.
-- [ ] No hook configuration, MCP server surface, or related runtime pack is
-      present under the plugin root.
-- [ ] No unauthorized extra agent, score-storage, analytics, or runtime-only
-      surface has been introduced.
+- [ ] Official VS Code Agent Plugins documentation was revalidated for this pass and still confirms a root `plugin.json` manifest plus documented `skills` and `agents` paths.
+- [ ] Official VS Code Custom Agents documentation was revalidated for this pass and still confirms `.agent.md` support for `tools`, `agents`, and `user-invocable`.
+- [ ] Official VS Code Custom Agents documentation was revalidated for this pass and still confirms that specifying `agents` requires `agent` to be present in `tools`.
+- [ ] No unsupported substitute field such as `infer` was introduced to satisfy RF6.
 
-## Safety and Privacy Checks
+## Runtime Root and Visibility Checkpoints
 
-- [ ] Education-only scope is explicit across governance and all agent files.
-- [ ] PHI refusal is explicit across foundation, coach, tutor, and quizzer
-      scenario coverage.
-- [ ] Real-patient diagnosis, treatment, prescribing, urgent-care guidance,
-      and clinical decision-support identity are prohibited.
-- [ ] Fictional or de-identified teaching examples remain the only allowed
-      case format.
-- [ ] No patient data store, persistent weak-area memory, persistent score
-      storage, or learner analytics surface is authorized.
-- [ ] No file overclaims clinical authority, runtime readiness, or production
-      readiness.
+- [ ] `plugin.json` remains at the plugin root and remains the runtime-root anchor for this plugin.
+- [ ] `plugin.json` was not widened beyond the documented manifest fields already required by this repo.
+- [ ] `agents/appoint-medical-student-coach.agent.md` exists and declares `user-invocable: true`.
+- [ ] `agents/appoint-medical-tutor.agent.md` exists and declares `user-invocable: false`.
+- [ ] `agents/appoint-medical-quizzer.agent.md` exists and declares `user-invocable: false`.
+- [ ] The coach frontmatter `agents` list is exactly `AppointMedicalTutor` and `AppointMedicalQuizzer`.
+- [ ] Tutor and quizzer remain callable as subagents because neither file sets `disable-model-invocation: true`.
+- [ ] No additional user-invocable runtime agent surface was introduced.
 
-## Role Boundary and Handoff Checks
+## Tool Surface and Collaboration Checkpoints
 
-- [ ] The coach remains limited to study coordination, progress reflection,
-      and current-session weak-area handling.
-- [ ] The tutor remains limited to concept teaching, guided questions, and
-      misconception correction.
-- [ ] The quizzer remains limited to quiz generation, grading, explanation,
-      and current-session weak-area detection.
-- [ ] Cross-agent handoffs remain recommendation-only or conceptual-routing
-      only.
-- [ ] No direct sibling-agent invocation is described or implied.
-- [ ] Shared governance, tutoring method, and quiz behavior remain inherited
-      shared layers rather than duplicated local rules.
+- [ ] Coach frontmatter `tools` is exactly `todo`, `memory`, and `agent`.
+- [ ] Tutor frontmatter `tools` is exactly `todo`, `memory`, and `agent`.
+- [ ] Quizzer frontmatter `tools` is exactly `todo`, `memory`, and `agent`.
+- [ ] No runtime evidence-collection tool, web/search/edit/terminal tool, hook, or MCP surface was added.
+- [ ] Tutor and quizzer do not widen downstream collaboration beyond the minimal RF6 design.
 
-## Scenario Coverage Checks
+## Safety and Boundary Checkpoints
 
-- [ ] Foundation scenarios F1-F7 are present.
-- [ ] Coach scenarios C1-C10 are present.
-- [ ] Tutor scenarios T1-T12 are present.
-- [ ] Quizzer scenarios Q1-Q15 are present.
-- [ ] Scenario descriptions preserve PHI refusal, safety refusal, role
-      boundaries, and session-local records posture.
-- [ ] Scenario descriptions do not claim live execution, live discovery, or
-      runtime proof.
+- [ ] Education-only, no-PHI, and no diagnosis/treatment/prescribing boundaries remain explicit across coach, tutor, and quizzer.
+- [ ] Tutor and quizzer remain subagent-only while coach remains the sole learner-facing runtime entry.
+- [ ] Current-session weak-area or performance context remains bounded and is not promoted to persistent learner or patient storage.
+- [ ] No file claims clinical authority, patient-specific decision support, runtime readiness, or mathematical certainty.
 
-## Evidence, Traceability, and Closure Checks
+## Governed Artifact and Closure Checkpoints
 
-- [ ] Current official platform-doc evidence covers the manifest and
-      `.agent.md` surfaces used by this repo before any runtime-facing claim.
-- [ ] The target environment baseline is recorded separately before any
-      runtime-ready, live-load, or live-discovery claim.
-- [ ] Any local source registration evidence is kept separate from positive
-      live discovery or live load proof.
-- [ ] The traceability matrix maps the foundation, coach, tutor, and quizzer
-      slices to files, scenarios, acceptance criteria, and closure evidence.
-- [ ] The traceability matrix has no orphan slice, scenario group, or audit
-      dependency.
-- [ ] The final audit report includes explicit pass or fail fields.
-- [ ] The final audit report blocks completion if platform-doc validation is
-      missing.
-- [ ] The final audit report blocks completion if environment proof is
-      missing.
-- [ ] The final audit report blocks completion if any safety, PHI, or
-      role-boundary check fails.
-- [ ] The final audit report blocks runtime-ready, live-load, and
-      actual-invocation claims without separate evidence.
-- [ ] Any cited request-side testing receipt stays explicitly bounded to the
-      sampled current-session interactions and safety cases it actually
-      records.
-- [ ] Any cited request-side testing receipt is described as separate
-      follow-up evidence only and is not promoted to plugin discovery,
-      plugin load, runtime-ready, generalized multi-agent execution, or
-      direct sibling-invocation proof.
-- [ ] No validation artifact claims live discovery or actual invocation in
-      this static pass.
+- [ ] `tests/validation-checklist.md` contains deterministic RF6 checkpoints rather than the older askQuestions-only contract.
+- [ ] `tests/traceability-matrix.md` maps every RF6 rule to runtime evidence and final-audit review with no orphan rule.
+- [ ] `tests/final-audit-report.md` contains explicit RF6 pass/block gates for docs, runtime root, visibility, tools, request closure, and repo-memory hygiene.
+- [ ] `research/.requests/06.md` records `output_intent | IMPLEMENT (Done) |` in both control-record and route-output rows.
+- [ ] Repo-memory hygiene is confirmed for release: `/memories/repo/rf6-verified-conventions.md` and `/memories/repo/rf6-plan.md` remain the controlling RF6 memory, `rf1-verified-conventions.md` remains compatible, and no conflicting RF2-RF5 repo-memory file remains active.
 
 ## Release Decision Rules
 
-- Pass static validation only when all applicable structure, safety, role,
-  scenario, traceability, and final-audit checks pass for the current static
-  slice.
-- Block any broader completion claim if platform-doc evidence, environment
-  proof, safety coverage, PHI refusal, role-boundary integrity, or traceable
-  closure evidence is missing.
-- Keep runtime-ready, live-load, and actual-invocation claims blocked until a
-  separate evidence-backed pass proves them.
+- Pass RF6 validation only when all applicable checkpoints above pass for the governed artifact set.
+- Block RF6 closure if official doc support is contradicted, any runtime-root or visibility rule drifts, any tool list widens, request closure is incomplete, or repo-memory hygiene fails.
+- Keep this checklist limited to governed artifact conformance; it does not claim live runtime invocation or mathematical certainty.
 
 ## Bounded Confidence Statement
 
-This checklist governs deterministic static validation only. It does not prove
-runtime readiness, live plugin loading, actual agent invocation, or
-mathematical certainty.
+This checklist records deterministic RF6 artifact validation only. It does not
+claim live runtime execution or mathematical certainty.

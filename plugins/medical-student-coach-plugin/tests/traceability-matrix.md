@@ -1,74 +1,67 @@
 # Traceability Matrix
 
-Use this matrix with [agent-behavior-scenarios.md](./agent-behavior-scenarios.md),
-[validation-checklist.md](./validation-checklist.md), and
-[final-audit-report.md](./final-audit-report.md) to verify that the
-foundation, coach, tutor, and quizzer slices all trace to concrete files,
-scenario IDs, acceptance ranges, and closure evidence.
+Use this matrix with [validation-checklist.md](./validation-checklist.md) and
+[final-audit-report.md](./final-audit-report.md) to verify that every RF6 rule
+maps to a governed file, deterministic evidence, and a final-audit gate.
 
 ## Ownership and Audit Boundary
 
 - Owner: `tests/traceability-matrix.md`
-- Input: Reconciled validation authority, predecessor final audits, current plugin surfaces, current validation artifacts, and cited runtime follow-up evidence when needed.
-- Output: One slice-to-evidence map for the full static validation layer.
-- Dependency: Current manifest, shared skills, current agent files, scenario suite, validation checklist, final audit report, and cited runtime follow-up evidence when needed.
+- Input: RF6 request authority, current plugin manifest, current agent files,
+  validation checklist, final audit report, and repo-memory inventory.
+- Output: One RF6 rule-to-evidence map with no orphan rule.
+- Dependency: `plugin.json`, the three agent files,
+  `validation-checklist.md`, `final-audit-report.md`,
+  `research/.requests/06.md`, and `/memories/repo/`.
 - Validator: Traceability Auditor.
-- Release gate: No broader completion claim may pass if any slice, scenario group, or closure evidence is orphaned.
-- Prior artifact audit: This file did not exist in the inherited test surface and was created because cross-slice traceability was missing.
+- Release gate: RF6 closure stays blocked if any rule below lacks a file owner,
+  deterministic evidence path, or final-audit gate.
 
 ## Relationship Map
 
-| Node             | Typed Links                                                                                                           |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Foundation slice | `owns` manifest and shared-layer constraints, `validates` global refusal rules                                        |
-| Coach slice      | `depends_on` foundation, `implements` study coordination, `validated_by` C scenarios                                  |
-| Tutor slice      | `depends_on` foundation and coach continuity, `implements` concept teaching, `validated_by` T scenarios               |
-| Quizzer slice    | `depends_on` foundation plus coach and tutor continuity, `implements` assessment behavior, `validated_by` Q scenarios |
-| Validation layer | `depends_on` all four slices, `validates` coverage and closure, `blocks` unsupported runtime claims                   |
+| Node                       | Typed Links                                                                                     |
+| -------------------------- | ----------------------------------------------------------------------------------------------- |
+| `research/.requests/06.md` | `governs` runtime-root, visibility, tooling, closure, and memory-hygiene rules                  |
+| `plugin.json`              | `implements` the runtime-root anchor and `supports` coach/tutor/quizzer discovery               |
+| Coach agent                | `implements` the sole user-invocable entry and `depends_on` tutor/quizzer subagent availability |
+| Tutor agent                | `implements` the hidden tutoring subagent boundary                                              |
+| Quizzer agent              | `implements` the hidden quizzer subagent boundary                                               |
+| Validation checklist       | `validates` deterministic RF6 checkpoints                                                       |
+| Final audit report         | `blocks_or_passes` RF6 completion based on the governed artifact state                          |
+| Repo memory inventory      | `validates` RF6 memory hygiene before release                                                   |
 
-## Slice-to-Evidence Matrix
+## RF6 Rule-to-Evidence Matrix
 
-| Slice                          | Controlled Capability                                                                                                      | Current Implementation Surfaces                                               | Scenario Coverage                  | Acceptance Range                                                                           | Closure Evidence                                                                                                                                                                                                  | Current Static Status                                                                                       |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Foundation                     | Plugin identity, shared safety boundary, shared tutoring method, shared quiz source, and no hook or MCP surface            | `plugin.json`, shared skills, `governance/medical-education-ai-governance.md` | F1-F7                              | Foundation AC1-AC10; validation AC1, AC10, AC15-AC19                                       | Predecessor foundation audit, current manifest, current governance record, current scenario suite                                                                                                                 | Pass with runtime-ready claims blocked                                                                      |
-| Local source registration      | Workspace-level registration of the local plugin root for documented source discovery                                      | `.vscode/settings.json`                                                       | Not applicable in this static pass | Validation AC2-AC4, AC20-AC25                                                              | Current workspace settings file plus separate post-registration Copilot-log probe                                                                                                                                 | Configured; no positive live discovery signal observed in the available follow-up evidence                  |
-| Coach                          | Study coordination, progress reflection, current-session weak-area handling, and recommendation-only next steps            | `agents/appoint-medical-student-coach.agent.md`                               | C1-C10                             | Coach AC1-AC10; validation AC11, AC15, AC19, AC24                                          | Current coach file, current scenario suite, current checklist, final static audit gate                                                                                                                            | Pass                                                                                                        |
-| Tutor                          | Concept teaching, Socratic questioning, misconception correction, uncertainty handling, and recommendation-only next steps | `agents/appoint-medical-tutor.agent.md`                                       | T1-T12                             | Tutor AC1-AC12; validation AC12, AC15, AC19, AC24                                          | Current tutor file, current scenario suite, current checklist, final static audit gate                                                                                                                            | Pass                                                                                                        |
-| Quizzer                        | Quiz generation, grading, distractor explanation, current-session weak-area detection, and recommendation-only next steps  | `agents/appoint-medical-quizzer.agent.md`                                     | Q1-Q15                             | Quizzer AC1-AC15; validation AC13, AC15, AC19, AC24                                        | Current quizzer file, current scenario suite, current checklist, final static audit gate                                                                                                                          | Pass                                                                                                        |
-| Cross-slice safety and privacy | Education-only posture, PHI refusal, no diagnosis or treatment or prescribing, no clinical decision-support identity       | Governance record plus all three agent files                                  | F3-F4, C5-C6, T9-T10, Q13-Q14      | Foundation AC10; coach AC3-AC4; tutor AC3-AC4; quizzer AC3-AC4; validation AC8, AC15, AC23 | Governance record, scenario suite, checklist, final audit blocker rules                                                                                                                                           | Pass                                                                                                        |
-| Cross-slice role boundaries    | Coach, tutor, and quizzer remain separate and non-invoking                                                                 | Governance record plus all three agent files                                  | C2-C3, C8-C9, T7-T8, T12, Q11-Q12  | Coach AC6-AC10; tutor AC7-AC12; quizzer AC10-AC15; validation AC7, AC15, AC24              | Governance record, scenario suite, checklist, final audit blocker rules                                                                                                                                           | Pass                                                                                                        |
-| Records and session locality   | Weak-area and performance summaries stay current-session only                                                              | Coach and quizzer files, plus tutor non-persistence rules                     | C4, C10, Q11-Q12                   | Coach AC5, AC9; tutor AC10; quizzer AC9, AC13; validation AC15, AC24                       | Current agent files, checklist, final static audit gate                                                                                                                                                           | Pass                                                                                                        |
-| Runtime evidence gate          | Runtime-ready, live-load, live-discovery, and actual-invocation claims require separate proof                              | Governance record, validation checklist, final audit report                   | Not applicable in this static pass | Validation AC2-AC4, AC20-AC25                                                              | Official-doc review dated 2026-05-21, local VS Code Insiders baseline capture, workspace local-plugin registration, post-registration Copilot-log probe, final audit report, and explicit evidence-required notes | Platform-doc surface proof, environment baseline, and local registration captured; live proof still blocked |
-
-## Bounded Follow-up Evidence
-
-- `research/.requests/05.testing-summary.md` may be cited as separate
-  follow-up evidence for sampled current-session coach, tutor, and quizzer
-  interactions, observed advisory handoffs, and sampled refusal behavior.
-- That request-side receipt does not replace the scenario suite or prove
-  plugin discovery, plugin load, runtime readiness, generalized multi-agent
-  execution, or direct sibling-agent invocation.
+| Rule ID | RF6 Rule                                                                    | Owning Files                                                                                                           | Deterministic Evidence                                                                                                                         | Validation Checkpoints                                   | Final Audit Gate                      |
+| ------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------- |
+| RF6-01  | `plugin.json` remains the runtime-root anchor                               | `plugin.json`, `research/.requests/06.md`                                                                              | Root `plugin.json` exists and remains the manifest referenced by RF6                                                                           | Official Doc Evidence 1; Runtime Root and Visibility 1-2 | Official docs and runtime-root anchor |
+| RF6-02  | Coach is the sole user-invocable agent                                      | `agents/appoint-medical-student-coach.agent.md`, `research/.requests/06.md`                                            | Coach frontmatter contains `user-invocable: true` and no sibling file does                                                                     | Runtime Root and Visibility 3, 6, 8                      | Sole user-facing coach                |
+| RF6-03  | Tutor is hidden but callable as a subagent                                  | `agents/appoint-medical-tutor.agent.md`, `agents/appoint-medical-student-coach.agent.md`, `research/.requests/06.md`   | Tutor frontmatter contains `user-invocable: false`; coach `agents` list names tutor; tutor does not set `disable-model-invocation: true`       | Runtime Root and Visibility 4, 6-7                       | Tutor subagent-only                   |
+| RF6-04  | Quizzer is hidden but callable as a subagent                                | `agents/appoint-medical-quizzer.agent.md`, `agents/appoint-medical-student-coach.agent.md`, `research/.requests/06.md` | Quizzer frontmatter contains `user-invocable: false`; coach `agents` list names quizzer; quizzer does not set `disable-model-invocation: true` | Runtime Root and Visibility 5-7                          | Quizzer subagent-only                 |
+| RF6-05  | Every runtime agent exposes only `todo`, `memory`, and `agent`              | All three agent files, `research/.requests/06.md`                                                                      | Each frontmatter `tools` list exactly matches the RF6 triple and contains no extra entry                                                       | Tool Surface and Collaboration 1-3                       | Exact RF6 tool surface                |
+| RF6-06  | No runtime evidence tool or unsupported runtime surface was added           | `plugin.json`, all three agent files, `research/.requests/06.md`                                                       | No hook, MCP, web/search/edit/terminal, or evidence-collector surface added in governed files                                                  | Tool Surface and Collaboration 4-5                       | No widened runtime surface            |
+| RF6-07  | Education-only and no-PHI boundaries remain intact                          | All three agent files, `plugin.json` context, `research/.requests/06.md`                                               | Agent bodies still refuse PHI and diagnosis/treatment/prescribing and keep context session-local                                               | Safety and Boundary 1-4                                  | Safety boundary preserved             |
+| RF6-08  | Official VS Code docs were revalidated before relying on frontmatter fields | `validation-checklist.md`, `final-audit-report.md`, `research/.requests/06.md`                                         | Validation and final-audit artifacts record the doc revalidation and block unsupported fields                                                  | Official Doc Evidence 1-4                                | Official-doc revalidation             |
+| RF6-09  | Request closure occurs only after the governed artifacts satisfy RF6        | `research/.requests/06.md`, `validation-checklist.md`, `final-audit-report.md`                                         | Both `output_intent` cells read `IMPLEMENT (Done)` only after prior gates pass                                                                 | Governed Artifact and Closure 1-4                        | Request closure                       |
+| RF6-10  | Repo-memory hygiene is confirmed before release                             | `/memories/repo/`, `validation-checklist.md`, `final-audit-report.md`                                                  | RF6 controlling memory remains active, RF1 remains compatible, and no conflicting RF2-RF5 file remains                                         | Governed Artifact and Closure 5                          | Repo-memory hygiene                   |
 
 ## Orphan Review
 
-| Item Type         | Result            | Notes                                                                                                                                                                                                                                                  |
-| ----------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Slice ownership   | pass              | Foundation, coach, tutor, quizzer, and validation surfaces each have a named owner                                                                                                                                                                     |
-| Scenario coverage | pass              | Every required scenario group is represented in one scenario suite                                                                                                                                                                                     |
-| Closure evidence  | pass              | Each slice points to current file evidence plus final audit gating                                                                                                                                                                                     |
-| Runtime proof     | partially bounded | Current official-doc surface proof, local environment baseline, and separate workspace-local registration evidence are present, but no positive discovery/load signal and no actual invocation proof were observed in the available follow-up evidence |
+| Item Type           | Result | Notes                                            |
+| ------------------- | ------ | ------------------------------------------------ |
+| Rule ownership      | pass   | Each RF6 rule maps to one or more governed files |
+| Validation linkage  | pass   | Every RF6 rule points to a checklist checkpoint  |
+| Final-audit linkage | pass   | Every RF6 rule points to a final-audit gate      |
+| Repo-memory linkage | pass   | Memory hygiene is explicitly attached to RF6-10  |
 
 ## Closure Rules
 
-- Any missing file, scenario group, or acceptance range keeps the final audit
-  blocked.
-- Any unsupported runtime-ready, live-load, live-discovery, or actual
-  invocation claim keeps the final audit blocked.
-- Any safety, privacy, or role-boundary drift reopens the affected slice and
-  its final-audit row.
+- Any unsupported frontmatter assumption keeps RF6-08 blocked.
+- Any visibility or tool-surface mismatch reopens RF6-02 through RF6-06.
+- Any missing request-closure or memory-hygiene evidence reopens RF6-09 or
+  RF6-10.
 
 ## Bounded Confidence Statement
 
-This matrix traces the current static validation layer only. It does not prove
-runtime readiness, live plugin loading, actual sibling-agent invocation, or
-mathematical certainty.
+This matrix traces deterministic RF6 artifact ownership and evidence only. It
+does not claim mathematical certainty.
